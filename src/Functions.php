@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace LucasLaurens\Assert;
+namespace LucasLaurens\Assertion;
 
 if (!function_exists('assertion')) {
     /**

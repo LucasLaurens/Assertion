@@ -1,5 +1,5 @@
 {
-    "name": "lucaslaurens/assert",
+    "name": "lucaslaurens/assertion",
     "description": "This library contains efficient assertions to test the input and output of your methods. With these assertions, you can greatly reduce the amount of coding needed to write a safe implementation.",
     "keywords": ["php"],
     "license": "MIT",
@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "LucasLaurens\\Assert\\": "src/"
+            "LucasLaurens\\Assertion\\": "src/"
         },
         "files": ["src/Functions.php"]
     },
@@ -38,5 +38,8 @@
         }
     },
     "scripts": {
+        "rector": "php vendor/bin/rector",
+        "stan": "php vendor/bin/phpstan",
+        "pest": "php vendor/bin/pest"
     }
 }

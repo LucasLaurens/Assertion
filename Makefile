@@ -15,7 +15,7 @@ update:
 
 # Upgrades and refactors the PHP code
 rector:
-	$(RECTOR)
+	$(RECTOR) process --config=rector.php
 
 # Conding Standard
 stan:
@@ -23,4 +23,4 @@ stan:
 
 # Run pest
 pest:
-	$(PEST)
+	$(PEST) --parallel

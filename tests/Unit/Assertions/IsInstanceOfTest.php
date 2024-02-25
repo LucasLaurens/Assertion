@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-use LucasLaurens\Assert\Assertion;
-use LucasLaurens\Assert\Exceptions\InvalidAssertionException;
+use LucasLaurens\Assertion\Exceptions\InvalidAssertionException;
 
-use function LucasLaurens\Assert\assertion;
+use function LucasLaurens\Assertion\assertion;
 
 it('assertion with stdClass argument', function (): void {
     assertion(new stdClass())->isInstanceOf(stdClass::class);

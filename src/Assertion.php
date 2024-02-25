@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace LucasLaurens\Assert;
+namespace LucasLaurens\Assertion;
 
-use LucasLaurens\Assert\Exceptions\InvalidAssertionException;
+use LucasLaurens\Assertion\Exceptions\InvalidAssertionException;
 
 /**
  * @template TValue

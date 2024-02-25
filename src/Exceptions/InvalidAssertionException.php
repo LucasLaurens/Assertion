@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace LucasLaurens\Assert\Exceptions;
+namespace LucasLaurens\Assertion\Exceptions;
 
 use Exception;
 
