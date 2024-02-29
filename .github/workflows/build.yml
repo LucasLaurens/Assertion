@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: ['8.3', '8.2', '8.1']
+        php: ['8.3', '8.2']
 
     steps:
     - uses: actions/checkout@v4
@@ -33,6 +33,15 @@ jobs:
 
     - name: Install dependencies
       run: composer update --prefer-stable --no-interaction --no-progress --ansi
+
+    - name: Rector Cache
+      uses: actions/cache@v3
+      with:
+        path: /tmp/rector
+        key: ${{ runner.os }}-rector-${{ github.run_id }}
+        restore-keys: ${{ runner.os }}-rector-
+
+    - run: mkdir -p /tmp/rector
 
     - name: Run Rector
       run: composer rector process --dry-run --config=rector.php
