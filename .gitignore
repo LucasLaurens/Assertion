@@ -3,5 +3,5 @@ composer.lock
 .phpunit.result.cache
 .phpunit.cache
 .vscode/
-.temp/*
+.tmp/*
 /storage/rector/cache/*

@@ -5,17 +5,38 @@ updates:
     schedule:
       interval: "monthly"
       timezone: "Europe/Paris"
+    reviewers:
+      - "LucasLaurens"
     pull-request-branch-name:
       separator: "_"
     open-pull-requests-limit: 10
     target-branch: "main"
     commit-message:
-      prefix: "Updating Composer packages: "
+      prefix: "chore: [composer] "
     labels:
       - "back"
-      - "chore"
-      - "devops"
-      - "enhancement"
+      - "update"
+      - "composer"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+      timezone: "Europe/Paris"
+    reviewers:
+      - "LucasLaurens"
+    pull-request-branch-name:
+      separator: "_"
+    open-pull-requests-limit: 10
+    target-branch: "main"
+    commit-message:
+      prefix: "chore: [workflows] "
+    labels:
+      - "back"
+      - "update"
+      - "workflows"
     ignore:
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]
