@@ -47,7 +47,7 @@ jobs:
       run: composer rector process --dry-run --config=rector.php
 
     - name: Run PHPStan
-      run: composer stan analyse -c phpstan.neon
+      run: composer phpstan analyse -c phpstan.neon
 
     - name: Run Pest
       run: composer pest --parallel

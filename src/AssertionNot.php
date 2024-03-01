@@ -17,16 +17,15 @@ use LucasLaurens\Assertion\Constraints\Traversable\IsList;
 /**
  * @template TValue
  */
-final readonly class Assertion implements Assertable
+final readonly class AssertionNot implements Assertable
 {
     /**
-     * Creates a new assertion.
+     * Creates a new assertion not.
      *
      * @param  TValue  $value
      */
     public function __construct(
-        public mixed $value,
-        public bool $negative = false
+        public mixed $value
     ) {
     }
 
@@ -35,7 +34,8 @@ final readonly class Assertion implements Assertable
         (new IsNull(
             $this->value,
             null,
-            'Expected null value. Got: %s'
+            'Expected a value other than null',
+            true
         ))->evaluate();
     }
 
@@ -44,7 +44,8 @@ final readonly class Assertion implements Assertable
         (new IsInstanceOf(
             $this->value,
             $fqcn,
-            'Expected %s class. Got: %s'
+            'Expected an instance other than %s',
+            true,
         ))->evaluate();
     }
 
@@ -53,7 +54,8 @@ final readonly class Assertion implements Assertable
         (new IsString(
             $this->value,
             Type::STRING->value,
-            'Expected %s value type. Got: %s'
+            'Expected an other value type than %s',
+            true
         ))->evaluate();
     }
 
@@ -62,7 +64,8 @@ final readonly class Assertion implements Assertable
         (new IsInt(
             $this->value,
             Type::INT->value,
-            'Expected %s value type. Got: %s'
+            'Expected an other value type than %s',
+            true
         ))->evaluate();
     }
 
@@ -71,7 +74,8 @@ final readonly class Assertion implements Assertable
         (new IsBool(
             $this->value,
             Type::BOOL->value,
-            'Expected %s value type. Got: %s'
+            'Expected an other value type than %s',
+            true
         ))->evaluate();
     }
 
@@ -80,7 +84,8 @@ final readonly class Assertion implements Assertable
         (new IsArray(
             $this->value,
             Type::ARRAY->value,
-            'Expected %s value type. Got: %s'
+            'Expected an other value type than %s',
+            true
         ))->evaluate();
     }
 
@@ -89,7 +94,8 @@ final readonly class Assertion implements Assertable
         (new Count(
             $this->value,
             $expected,
-            'Expected an array to contain %d elements. Got: %d'
+            'Expected an array not to contain %d elements',
+            true
         ))->evaluate();
     }
 
@@ -98,7 +104,8 @@ final readonly class Assertion implements Assertable
         (new GreaterThan(
             $this->value,
             $limit,
-            'Expected a value greater than %d. Got: %d'
+            'Expected a value not greater than %d',
+            true
         ))->evaluate();
     }
 
@@ -107,7 +114,8 @@ final readonly class Assertion implements Assertable
         (new LessThan(
             $this->value,
             $limit,
-            'Expected a value less than %d. Got: %d',
+            'Expected a value not less than %d',
+            true
         ))->evaluate();
     }
 
@@ -116,7 +124,8 @@ final readonly class Assertion implements Assertable
         (new IsEqual(
             $this->value,
             $expected,
-            'Expected a value equal to %s. Got: %s'
+            'Expected a value not equal to %s.',
+            true
         ))->evaluate();
     }
 
@@ -125,7 +134,8 @@ final readonly class Assertion implements Assertable
         (new IsList(
             $this->value,
             Type::BOOL->value,
-            'Expected array to be a list'
+            'Expected array not to be a list',
+            true
         ))->evaluate();
     }
 }
