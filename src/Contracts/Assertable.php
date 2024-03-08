@@ -27,4 +27,6 @@ interface Assertable
     public function equal(mixed $expected): void;
 
     public function list(): void;
+
+    public function stringStartsWith(string $expected): void;
 }

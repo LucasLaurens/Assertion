@@ -12,6 +12,7 @@ use LucasLaurens\Assertion\Constraints\Equality\IsEqual;
 use LucasLaurens\Assertion\Constraints\Traversable\IsArray;
 use LucasLaurens\Assertion\Constraints\Type\{IsInstanceOf, IsInt, IsNull};
 use LucasLaurens\Assertion\Constraints\Cardinality\{Count, GreaterThan, LessThan};
+use LucasLaurens\Assertion\Constraints\String\StartsWith;
 use LucasLaurens\Assertion\Constraints\Traversable\IsList;
 
 /**
@@ -126,6 +127,15 @@ final readonly class Assertion implements Assertable
             $this->value,
             Type::BOOL->value,
             'Expected array to be a list'
+        ))->evaluate();
+    }
+
+    public function stringStartsWith(string $expected): void
+    {
+        (new StartsWith(
+            $this->value,
+            $expected,
+            'Expected a value to start with %s. Got: %s'
         ))->evaluate();
     }
 }
