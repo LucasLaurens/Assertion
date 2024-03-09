@@ -29,4 +29,6 @@ interface Assertable
     public function list(): void;
 
     public function stringStartsWith(string $expected): void;
+
+    public function stringEndsWith(string $expected): void;
 }

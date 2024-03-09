@@ -12,6 +12,7 @@ use LucasLaurens\Assertion\Constraints\Equality\IsEqual;
 use LucasLaurens\Assertion\Constraints\Traversable\IsArray;
 use LucasLaurens\Assertion\Constraints\Type\{IsInstanceOf, IsInt, IsNull};
 use LucasLaurens\Assertion\Constraints\Cardinality\{Count, GreaterThan, LessThan};
+use LucasLaurens\Assertion\Constraints\String\EndsWith;
 use LucasLaurens\Assertion\Constraints\String\StartsWith;
 use LucasLaurens\Assertion\Constraints\Traversable\IsList;
 
@@ -145,7 +146,17 @@ final readonly class AssertionNot implements Assertable
         (new StartsWith(
             $this->value,
             $expected,
-            'Expected a value not to start with %s',
+            'Expected a value not to starts with %s',
+            true
+        ))->evaluate();
+    }
+
+    public function stringEndsWith(string $expected): void
+    {
+        (new EndsWith(
+            $this->value,
+            $expected,
+            'Expected a value not to ends with %s',
             true
         ))->evaluate();
     }

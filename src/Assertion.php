@@ -12,6 +12,7 @@ use LucasLaurens\Assertion\Constraints\Equality\IsEqual;
 use LucasLaurens\Assertion\Constraints\Traversable\IsArray;
 use LucasLaurens\Assertion\Constraints\Type\{IsInstanceOf, IsInt, IsNull};
 use LucasLaurens\Assertion\Constraints\Cardinality\{Count, GreaterThan, LessThan};
+use LucasLaurens\Assertion\Constraints\String\EndsWith;
 use LucasLaurens\Assertion\Constraints\String\StartsWith;
 use LucasLaurens\Assertion\Constraints\Traversable\IsList;
 
@@ -135,7 +136,16 @@ final readonly class Assertion implements Assertable
         (new StartsWith(
             $this->value,
             $expected,
-            'Expected a value to start with %s. Got: %s'
+            'Expected a value to starts with %s. Got: %s'
+        ))->evaluate();
+    }
+
+    public function stringEndsWith(string $expected): void
+    {
+        (new EndsWith(
+            $this->value,
+            $expected,
+            'Expected a value to ends with %s. Got: %s'
         ))->evaluate();
     }
 }

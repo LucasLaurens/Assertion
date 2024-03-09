@@ -6,18 +6,21 @@ namespace LucasLaurens\Assertion\Constraints\String;
 
 use LucasLaurens\Assertion\Constraints\Constraint;
 
-use function strstr;
+use function trim;
+use function is_int;
+use function substr;
+use function strrpos;
 use function is_string;
+use function str_ends_with;
 use function get_debug_type;
-use function str_starts_with;
 
-final readonly class StartsWith extends Constraint
+final readonly class EndsWith extends Constraint
 {
     protected function isMatching(): bool
     {
         return is_string($this->expected)
             && is_string($this->actual)
-            && str_starts_with(
+            && str_ends_with(
                 $this->actual,
                 $this->expected
             );
@@ -26,14 +29,14 @@ final readonly class StartsWith extends Constraint
     protected function getFormattedActualValue(): string|int|float
     {
         return is_string($this->actual)
-            && is_string(
-                $strStr = strstr(
-                    $this->actual,
-                    ' ',
-                    true
-                )
-            )
-            ? $strStr
+            && is_int($offset = strrpos(
+                $this->actual,
+                ' '
+            ))
+            ? trim(substr(
+                $this->actual,
+                $offset
+            ))
             : get_debug_type($this->actual);
     }
 }
