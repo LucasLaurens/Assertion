@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LucasLaurens\Assertion;
 
+use Override;
 use LucasLaurens\Assertion\Enums\Type;
 use LucasLaurens\Assertion\Contracts\Assertable;
 use LucasLaurens\Assertion\Constraints\Boolean\IsBool;
@@ -14,6 +15,7 @@ use LucasLaurens\Assertion\Constraints\Type\{IsInstanceOf, IsInt, IsNull};
 use LucasLaurens\Assertion\Constraints\Cardinality\{Count, GreaterThan, LessThan};
 use LucasLaurens\Assertion\Constraints\String\Contains;
 use LucasLaurens\Assertion\Constraints\String\EndsWith;
+use LucasLaurens\Assertion\Constraints\String\IsJson;
 use LucasLaurens\Assertion\Constraints\String\StartsWith;
 use LucasLaurens\Assertion\Constraints\Traversable\IsList;
 
@@ -33,6 +35,7 @@ final readonly class Assertion implements Assertable
     ) {
     }
 
+    #[Override]
     public function null(): void
     {
         (new IsNull(
@@ -42,6 +45,7 @@ final readonly class Assertion implements Assertable
         ))->evaluate();
     }
 
+    #[Override]
     public function instanceOf(string $fqcn): void
     {
         (new IsInstanceOf(
@@ -51,6 +55,7 @@ final readonly class Assertion implements Assertable
         ))->evaluate();
     }
 
+    #[Override]
     public function string(): void
     {
         (new IsString(
@@ -60,6 +65,7 @@ final readonly class Assertion implements Assertable
         ))->evaluate();
     }
 
+    #[Override]
     public function integer(): void
     {
         (new IsInt(
@@ -69,6 +75,7 @@ final readonly class Assertion implements Assertable
         ))->evaluate();
     }
 
+    #[Override]
     public function boolean(): void
     {
         (new IsBool(
@@ -78,6 +85,7 @@ final readonly class Assertion implements Assertable
         ))->evaluate();
     }
 
+    #[Override]
     public function mustBeArray(): void
     {
         (new IsArray(
@@ -87,6 +95,7 @@ final readonly class Assertion implements Assertable
         ))->evaluate();
     }
 
+    #[Override]
     public function count(int $expected): void
     {
         (new Count(
@@ -96,6 +105,7 @@ final readonly class Assertion implements Assertable
         ))->evaluate();
     }
 
+    #[Override]
     public function greaterThan(int $limit): void
     {
         (new GreaterThan(
@@ -105,6 +115,7 @@ final readonly class Assertion implements Assertable
         ))->evaluate();
     }
 
+    #[Override]
     public function lessThan(int $limit): void
     {
         (new LessThan(
@@ -114,6 +125,7 @@ final readonly class Assertion implements Assertable
         ))->evaluate();
     }
 
+    #[Override]
     public function equal(mixed $expected): void
     {
         (new IsEqual(
@@ -123,6 +135,7 @@ final readonly class Assertion implements Assertable
         ))->evaluate();
     }
 
+    #[Override]
     public function list(): void
     {
         (new IsList(
@@ -132,6 +145,7 @@ final readonly class Assertion implements Assertable
         ))->evaluate();
     }
 
+    #[Override]
     public function stringStartsWith(string $expected): void
     {
         (new StartsWith(
@@ -141,6 +155,7 @@ final readonly class Assertion implements Assertable
         ))->evaluate();
     }
 
+    #[Override]
     public function stringEndsWith(string $expected): void
     {
         (new EndsWith(
@@ -150,12 +165,23 @@ final readonly class Assertion implements Assertable
         ))->evaluate();
     }
 
+    #[Override]
     public function stringContains(string $expected): void
     {
         (new Contains(
             $this->value,
             $expected,
             'Expected a value to contains %s'
+        ))->evaluate();
+    }
+
+    #[Override]
+    public function validJson(): void
+    {
+        (new IsJson(
+            $this->value,
+            Type::STRING->value,
+            'Expected the value to be of type json'
         ))->evaluate();
     }
 }

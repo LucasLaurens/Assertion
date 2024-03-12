@@ -11,4 +11,5 @@ enum Type: string
     case BOOL = 'bool';
     case ARRAY = 'array';
     case STRING = 'string';
+    case OBJECT = 'object';
 }

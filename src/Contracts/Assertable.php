@@ -31,4 +31,8 @@ interface Assertable
     public function stringStartsWith(string $expected): void;
 
     public function stringEndsWith(string $expected): void;
+
+    public function stringContains(string $expected): void;
+
+    public function validJson(): void;
 }

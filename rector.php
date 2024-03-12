@@ -30,8 +30,6 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     $rectorConfig->sets([
-        LevelSetList::UP_TO_PHP_82,
-        SetList::PHP_82,
         LevelSetList::UP_TO_PHP_83,
         SetList::PHP_83,
     ]);
