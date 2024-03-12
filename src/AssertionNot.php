@@ -7,14 +7,15 @@ namespace LucasLaurens\Assertion;
 use LucasLaurens\Assertion\Enums\Type;
 use LucasLaurens\Assertion\Contracts\Assertable;
 use LucasLaurens\Assertion\Constraints\Boolean\IsBool;
+use LucasLaurens\Assertion\Constraints\String\Contains;
+use LucasLaurens\Assertion\Constraints\String\EndsWith;
 use LucasLaurens\Assertion\Constraints\String\IsString;
 use LucasLaurens\Assertion\Constraints\Equality\IsEqual;
+use LucasLaurens\Assertion\Constraints\String\StartsWith;
+use LucasLaurens\Assertion\Constraints\Traversable\IsList;
 use LucasLaurens\Assertion\Constraints\Traversable\IsArray;
 use LucasLaurens\Assertion\Constraints\Type\{IsInstanceOf, IsInt, IsNull};
 use LucasLaurens\Assertion\Constraints\Cardinality\{Count, GreaterThan, LessThan};
-use LucasLaurens\Assertion\Constraints\String\EndsWith;
-use LucasLaurens\Assertion\Constraints\String\StartsWith;
-use LucasLaurens\Assertion\Constraints\Traversable\IsList;
 
 /**
  * @template TValue
@@ -157,6 +158,16 @@ final readonly class AssertionNot implements Assertable
             $this->value,
             $expected,
             'Expected a value not to ends with %s',
+            true
+        ))->evaluate();
+    }
+
+    public function stringContains(string $expected): void
+    {
+        (new Contains(
+            $this->value,
+            $expected,
+            'Expected a value not to contains %s',
             true
         ))->evaluate();
     }

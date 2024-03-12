@@ -12,6 +12,7 @@ use LucasLaurens\Assertion\Constraints\Equality\IsEqual;
 use LucasLaurens\Assertion\Constraints\Traversable\IsArray;
 use LucasLaurens\Assertion\Constraints\Type\{IsInstanceOf, IsInt, IsNull};
 use LucasLaurens\Assertion\Constraints\Cardinality\{Count, GreaterThan, LessThan};
+use LucasLaurens\Assertion\Constraints\String\Contains;
 use LucasLaurens\Assertion\Constraints\String\EndsWith;
 use LucasLaurens\Assertion\Constraints\String\StartsWith;
 use LucasLaurens\Assertion\Constraints\Traversable\IsList;
@@ -146,6 +147,15 @@ final readonly class Assertion implements Assertable
             $this->value,
             $expected,
             'Expected a value to ends with %s. Got: %s'
+        ))->evaluate();
+    }
+
+    public function stringContains(string $expected): void
+    {
+        (new Contains(
+            $this->value,
+            $expected,
+            'Expected a value to contains %s'
         ))->evaluate();
     }
 }
