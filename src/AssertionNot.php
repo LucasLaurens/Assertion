@@ -7,6 +7,7 @@ namespace LucasLaurens\Assertion;
 use Override;
 use LucasLaurens\Assertion\Enums\Type;
 use LucasLaurens\Assertion\Contracts\Assertable;
+use LucasLaurens\Assertion\Constraints\Math\IsNan;
 use LucasLaurens\Assertion\Constraints\String\IsJson;
 use LucasLaurens\Assertion\Constraints\Boolean\IsBool;
 use LucasLaurens\Assertion\Constraints\String\Contains;
@@ -195,6 +196,17 @@ final readonly class AssertionNot implements Assertable
             $this->value,
             Type::STRING->value,
             'Expected the value not to be of type json',
+            true
+        ))->evaluate();
+    }
+
+    #[Override]
+    public function nan(): void
+    {
+        (new IsNan(
+            $this->value,
+            Type::INT->value,
+            'Expected value must be a number',
             true
         ))->evaluate();
     }

@@ -35,4 +35,6 @@ interface Assertable
     public function stringContains(string $expected): void;
 
     public function validJson(): void;
+
+    public function nan(): void;
 }
