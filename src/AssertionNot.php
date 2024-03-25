@@ -10,6 +10,7 @@ use LucasLaurens\Assertion\Contracts\Assertable;
 use LucasLaurens\Assertion\Constraints\Math\IsNan;
 use LucasLaurens\Assertion\Constraints\String\IsJson;
 use LucasLaurens\Assertion\Constraints\Boolean\IsBool;
+use LucasLaurens\Assertion\Constraints\Boolean\IsTrue;
 use LucasLaurens\Assertion\Constraints\String\Contains;
 use LucasLaurens\Assertion\Constraints\String\EndsWith;
 use LucasLaurens\Assertion\Constraints\String\IsString;
@@ -207,6 +208,17 @@ final readonly class AssertionNot implements Assertable
             $this->value,
             Type::INT->value,
             'Expected value must be a number',
+            true
+        ))->evaluate();
+    }
+
+    #[Override]
+    public function true(): void
+    {
+        (new IsTrue(
+            $this->value,
+            true,
+            'Expected a value not to be true',
             true
         ))->evaluate();
     }

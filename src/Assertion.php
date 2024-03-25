@@ -8,6 +8,7 @@ use Override;
 use LucasLaurens\Assertion\Enums\Type;
 use LucasLaurens\Assertion\Contracts\Assertable;
 use LucasLaurens\Assertion\Constraints\Boolean\IsBool;
+use LucasLaurens\Assertion\Constraints\Boolean\IsTrue;
 use LucasLaurens\Assertion\Constraints\String\IsString;
 use LucasLaurens\Assertion\Constraints\Equality\IsEqual;
 use LucasLaurens\Assertion\Constraints\Traversable\IsArray;
@@ -193,6 +194,16 @@ final readonly class Assertion implements Assertable
             $this->value,
             Type::INT->value,
             'Expected value must not be a number'
+        ))->evaluate();
+    }
+
+    #[Override]
+    public function true(): void
+    {
+        (new IsTrue(
+            $this->value,
+            true,
+            'Expected a value to be true. Got: %s'
         ))->evaluate();
     }
 }

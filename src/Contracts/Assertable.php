@@ -37,4 +37,6 @@ interface Assertable
     public function validJson(): void;
 
     public function nan(): void;
+
+    public function true(): void;
 }
