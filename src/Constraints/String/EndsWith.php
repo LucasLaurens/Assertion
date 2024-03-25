@@ -8,12 +8,11 @@ use Override;
 use LucasLaurens\Assertion\Constraints\Constraint;
 
 use function trim;
-use function is_int;
 use function substr;
 use function strrpos;
 use function is_string;
 use function str_ends_with;
-use function get_debug_type;
+use function gettype;
 
 final readonly class EndsWith extends Constraint
 {
@@ -29,7 +28,7 @@ final readonly class EndsWith extends Constraint
     }
 
     #[Override]
-    protected function getFormattedActualValue(): string|int|float
+    protected function getFormattedActualValue(): bool|float|int|string|null
     {
         return is_string($this->actual)
             && is_int($offset = strrpos(
@@ -40,6 +39,6 @@ final readonly class EndsWith extends Constraint
                 $this->actual,
                 $offset
             ))
-            : get_debug_type($this->actual);
+            : gettype($this->actual);
     }
 }

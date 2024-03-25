@@ -10,26 +10,26 @@ use LucasLaurens\Assertion\Constraints\Constraint;
 use function is_bool;
 use function gettype;
 
-final readonly class IsTrue extends Constraint
+final readonly class IsFalse extends Constraint
 {
     #[Override]
     protected function isMatching(): bool
     {
         return is_bool(
             $this->actual
-        ) && $this->actual;
+        ) && ! $this->actual;
     }
 
     #[Override]
     protected function getFormattedExpectedValue(): bool|float|int|string|null
     {
-        return "true";
+        return "false";
     }
 
     #[Override]
     protected function getFormattedActualValue(): bool|float|int|string|null
     {
-        // Could be false or another type
+        // Could be true or another type
         return is_bool($this->actual)
             ? var_export(
                 $this->actual,

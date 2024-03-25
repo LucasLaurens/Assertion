@@ -16,8 +16,9 @@ final readonly class IsEqual extends Constraint
     }
 
     #[Override]
-    protected function getFormattedActualValue(): string|int|float
+    protected function getFormattedActualValue(): bool|float|int|string|null
     {
+        // The default value is 0 when it is not an integer
         return is_int($this->actual) ? $this->actual : 0;
     }
 }

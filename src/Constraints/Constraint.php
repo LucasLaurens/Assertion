@@ -4,14 +4,10 @@ declare(strict_types=1);
 
 namespace LucasLaurens\Assertion\Constraints;
 
-use LucasLaurens\Assertion\Enums\Type;
 use LucasLaurens\Assertion\Exceptions\InvalidAssertionException;
 
-use function is_int;
-use function is_float;
-use function is_string;
-use function is_countable;
-use function get_debug_type;
+use function gettype;
+use function is_scalar;
 
 abstract readonly class Constraint
 {
@@ -40,28 +36,16 @@ abstract readonly class Constraint
         return false;
     }
 
-    /** @todo Add for every constraint that needs it */
-    protected function getFormattedExpectedValue(): string|int|float
+    protected function getFormattedExpectedValue(): bool|float|int|string|null
     {
-        if (
-            !is_string($this->expected)
-            && !is_int($this->expected)
-            && !is_float($this->expected)
-        ) {
-            return Type::STRING->value;
-        }
-
-        return $this->expected;
+        return is_scalar($this->expected)
+            ? $this->expected
+            : gettype($this->expected);
     }
 
-    /** @todo Add for every constraint that needs it */
-    protected function getFormattedActualValue(): string|int|float
+    protected function getFormattedActualValue(): bool|float|int|string|null
     {
-        return is_countable($this->actual)
-            ? count($this->actual)
-            : get_debug_type(
-                $this->actual
-            );
+        return gettype($this->actual);
     }
 
     /**

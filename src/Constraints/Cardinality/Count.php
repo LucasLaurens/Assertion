@@ -22,4 +22,15 @@ final readonly class Count extends Constraint
             && is_int($this->expected)
             && count($this->actual) === $this->expected;
     }
+
+    #[Override]
+    protected function getFormattedActualValue(): bool|float|int|string|null
+    {
+        // Could be countable value or another type
+        if (is_countable($this->actual)) {
+            return count($this->actual);
+        }
+
+        return parent::getFormattedActualValue();
+    }
 }

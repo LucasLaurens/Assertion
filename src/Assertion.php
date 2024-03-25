@@ -8,6 +8,7 @@ use Override;
 use LucasLaurens\Assertion\Enums\Type;
 use LucasLaurens\Assertion\Contracts\Assertable;
 use LucasLaurens\Assertion\Constraints\Boolean\IsBool;
+use LucasLaurens\Assertion\Constraints\Boolean\IsFalse;
 use LucasLaurens\Assertion\Constraints\Boolean\IsTrue;
 use LucasLaurens\Assertion\Constraints\String\IsString;
 use LucasLaurens\Assertion\Constraints\Equality\IsEqual;
@@ -43,7 +44,7 @@ final readonly class Assertion implements Assertable
         (new IsNull(
             $this->value,
             null,
-            'Expected null value. Got: %s'
+            'Expected %s value. Got: %s'
         ))->evaluate();
     }
 
@@ -203,7 +204,17 @@ final readonly class Assertion implements Assertable
         (new IsTrue(
             $this->value,
             true,
-            'Expected a value to be true. Got: %s'
+            'Expected a value to be %s. Got: %s'
+        ))->evaluate();
+    }
+
+    #[Override]
+    public function false(): void
+    {
+        (new IsFalse(
+            $this->value,
+            false,
+            'Expected a value to be %s. Got: %s'
         ))->evaluate();
     }
 }

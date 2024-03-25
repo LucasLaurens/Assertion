@@ -9,8 +9,8 @@ use LucasLaurens\Assertion\Constraints\Constraint;
 
 use function strstr;
 use function is_string;
-use function get_debug_type;
 use function str_starts_with;
+use function gettype;
 
 final readonly class StartsWith extends Constraint
 {
@@ -26,17 +26,14 @@ final readonly class StartsWith extends Constraint
     }
 
     #[Override]
-    protected function getFormattedActualValue(): string|int|float
+    protected function getFormattedActualValue(): bool|float|int|string|null
     {
         return is_string($this->actual)
-            && is_string(
-                $strStr = strstr(
-                    $this->actual,
-                    ' ',
-                    true
-                )
+            ? strstr(
+                $this->actual,
+                ' ',
+                true
             )
-            ? $strStr
-            : get_debug_type($this->actual);
+            : gettype($this->actual);
     }
 }

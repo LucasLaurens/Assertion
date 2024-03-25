@@ -39,4 +39,6 @@ interface Assertable
     public function nan(): void;
 
     public function true(): void;
+
+    public function false(): void;
 }
