@@ -10,14 +10,15 @@ use LucasLaurens\Assertion\Contracts\Assertable;
 use LucasLaurens\Assertion\Constraints\Math\IsNan;
 use LucasLaurens\Assertion\Constraints\String\IsJson;
 use LucasLaurens\Assertion\Constraints\Boolean\IsBool;
-use LucasLaurens\Assertion\Constraints\Boolean\IsFalse;
 use LucasLaurens\Assertion\Constraints\Boolean\IsTrue;
+use LucasLaurens\Assertion\Constraints\Boolean\IsFalse;
 use LucasLaurens\Assertion\Constraints\String\Contains;
 use LucasLaurens\Assertion\Constraints\String\EndsWith;
 use LucasLaurens\Assertion\Constraints\String\IsString;
 use LucasLaurens\Assertion\Constraints\Equality\IsEqual;
 use LucasLaurens\Assertion\Constraints\String\StartsWith;
 use LucasLaurens\Assertion\Constraints\Traversable\IsList;
+use LucasLaurens\Assertion\Constraints\Cardinality\IsEmpty;
 use LucasLaurens\Assertion\Constraints\Traversable\IsArray;
 use LucasLaurens\Assertion\Constraints\Type\{IsInstanceOf, IsInt, IsNull};
 use LucasLaurens\Assertion\Constraints\Cardinality\{Count, GreaterThan, LessThan};
@@ -232,6 +233,16 @@ final readonly class AssertionNot implements Assertable
             false,
             'Expected a value not to be false',
             true
+        ))->evaluate();
+    }
+
+    #[Override]
+    public function empty(): void
+    {
+        (new IsEmpty(
+            actual: $this->value,
+            pattern: 'Expected a non empty value',
+            negative: true
         ))->evaluate();
     }
 }

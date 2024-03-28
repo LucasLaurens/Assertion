@@ -41,4 +41,6 @@ interface Assertable
     public function true(): void;
 
     public function false(): void;
+
+    public function empty(): void;
 }

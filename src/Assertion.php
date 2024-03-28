@@ -14,7 +14,7 @@ use LucasLaurens\Assertion\Constraints\String\IsString;
 use LucasLaurens\Assertion\Constraints\Equality\IsEqual;
 use LucasLaurens\Assertion\Constraints\Traversable\IsArray;
 use LucasLaurens\Assertion\Constraints\Type\{IsInstanceOf, IsInt, IsNull};
-use LucasLaurens\Assertion\Constraints\Cardinality\{Count, GreaterThan, LessThan};
+use LucasLaurens\Assertion\Constraints\Cardinality\{Count, GreaterThan, IsEmpty, LessThan};
 use LucasLaurens\Assertion\Constraints\Math\IsNan;
 use LucasLaurens\Assertion\Constraints\String\Contains;
 use LucasLaurens\Assertion\Constraints\String\EndsWith;
@@ -215,6 +215,15 @@ final readonly class Assertion implements Assertable
             $this->value,
             false,
             'Expected a value to be %s. Got: %s'
+        ))->evaluate();
+    }
+
+    #[Override]
+    public function empty(): void
+    {
+        (new IsEmpty(
+            actual: $this->value,
+            pattern: 'Expected an empty value. Got %s'
         ))->evaluate();
     }
 }
