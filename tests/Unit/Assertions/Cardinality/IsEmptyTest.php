@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use ArrayObject;
-
 use LucasLaurens\Assertion\Exceptions\InvalidAssertionException;
 
 use function LucasLaurens\Assertion\{assertion, assertionNot};
@@ -20,7 +19,7 @@ it('passes with iterable class', function (): void {
     assertion(new EmptyIterator())->empty();
 })->throwsNoExceptions();
 
-it('passes with iterable or countable classes', function (): void {
+it('passes with empty iterable or countable classes', function (): void {
     assertion(new ArrayObject())->empty();
     assertion(new ArrayIterator())->empty();
 })->throwsNoExceptions();
@@ -41,20 +40,58 @@ it('fails with non empty string', function (): void {
 
 it('fails with iterable or countable classes', function (): void {
     assertion(
-        new ArrayObject(
-            [1, 2, 3, 4, 5],
-            ArrayObject::STD_PROP_LIST
-        )
+        new ArrayObject([1, 2, 3, 4, 5])
     )->empty();
 
     assertion(
-        new ArrayIterator(
-            [1, 2, 3, 4, 5]
-        )
+        new ArrayIterator([1, 2, 3, 4, 5])
     )->empty();
 })->throws(
     InvalidAssertionException::class,
     "Expected an empty value. Got object"
 );
 
-/** @todo make tests for assertion not */
+it('passes with none empty array', function (): void {
+    assertionNot([1, 2, 3, 4, 5])->empty();
+})->throwsNoExceptions();
+
+it('passes with none empty string', function (): void {
+    assertionNot("foo")->empty();
+})->throwsNoExceptions();
+
+it('passes with none empty iterable or countable classes', function (): void {
+    assertionNot(
+        new ArrayObject([1, 2, 3, 4, 5])
+    )->empty();
+
+    assertionNot(
+        new ArrayIterator([1, 2, 3, 4, 5])
+    )->empty();
+})->throwsNoExceptions();
+
+it('fails with empty array', function (): void {
+    assertionNot([])->empty();
+})->throws(
+    InvalidAssertionException::class,
+    "Expected a non empty value"
+);
+
+it('fails with empty string', function (): void {
+    assertionNot("")->empty();
+})->throws(
+    InvalidAssertionException::class,
+    "Expected a non empty value"
+);
+
+it('fails with empty iterable or countable classes', function (): void {
+    assertionNot(
+        new ArrayObject([])
+    )->empty();
+
+    assertionNot(
+        new ArrayIterator([])
+    )->empty();
+})->throws(
+    InvalidAssertionException::class,
+    "Expected a non empty value"
+);
