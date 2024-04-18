@@ -9,7 +9,7 @@ updates:
       - "LucasLaurens"
     pull-request-branch-name:
       separator: "_"
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 5
     target-branch: "main"
     commit-message:
       prefix: "chore: [composer] "
@@ -20,7 +20,8 @@ updates:
     ignore:
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]
-  - package-ecosystem: "github-actions"
+
+  - package-ecosystem: github-actions
     directory: "/"
     schedule:
       interval: "monthly"
@@ -29,7 +30,7 @@ updates:
       - "LucasLaurens"
     pull-request-branch-name:
       separator: "_"
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 5
     target-branch: "main"
     commit-message:
       prefix: "chore: [workflows] "
