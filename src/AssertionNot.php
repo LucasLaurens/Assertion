@@ -7,6 +7,7 @@ namespace LucasLaurens\Assertion;
 use Override;
 use LucasLaurens\Assertion\Enums\Type;
 use LucasLaurens\Assertion\Contracts\Assertable;
+use LucasLaurens\Assertion\Constraints\IsCallable;
 use LucasLaurens\Assertion\Constraints\Math\IsNan;
 use LucasLaurens\Assertion\Constraints\String\IsJson;
 use LucasLaurens\Assertion\Constraints\Boolean\IsBool;
@@ -242,6 +243,16 @@ final readonly class AssertionNot implements Assertable
         (new IsEmpty(
             actual: $this->value,
             pattern: 'Expected a non empty value',
+            negative: true
+        ))->evaluate();
+    }
+
+    #[Override]
+    public function callable(): void
+    {
+        (new IsCallable(
+            actual: $this->value,
+            pattern: 'Expected a non callable value',
             negative: true
         ))->evaluate();
     }

@@ -7,20 +7,21 @@ namespace LucasLaurens\Assertion;
 use Override;
 use LucasLaurens\Assertion\Enums\Type;
 use LucasLaurens\Assertion\Contracts\Assertable;
+use LucasLaurens\Assertion\Constraints\IsCallable;
+use LucasLaurens\Assertion\Constraints\Math\IsNan;
+use LucasLaurens\Assertion\Constraints\String\IsJson;
 use LucasLaurens\Assertion\Constraints\Boolean\IsBool;
-use LucasLaurens\Assertion\Constraints\Boolean\IsFalse;
 use LucasLaurens\Assertion\Constraints\Boolean\IsTrue;
+use LucasLaurens\Assertion\Constraints\Boolean\IsFalse;
+use LucasLaurens\Assertion\Constraints\String\Contains;
+use LucasLaurens\Assertion\Constraints\String\EndsWith;
 use LucasLaurens\Assertion\Constraints\String\IsString;
 use LucasLaurens\Assertion\Constraints\Equality\IsEqual;
+use LucasLaurens\Assertion\Constraints\String\StartsWith;
+use LucasLaurens\Assertion\Constraints\Traversable\IsList;
 use LucasLaurens\Assertion\Constraints\Traversable\IsArray;
 use LucasLaurens\Assertion\Constraints\Type\{IsInstanceOf, IsInt, IsNull};
 use LucasLaurens\Assertion\Constraints\Cardinality\{Count, GreaterThan, IsEmpty, LessThan};
-use LucasLaurens\Assertion\Constraints\Math\IsNan;
-use LucasLaurens\Assertion\Constraints\String\Contains;
-use LucasLaurens\Assertion\Constraints\String\EndsWith;
-use LucasLaurens\Assertion\Constraints\String\IsJson;
-use LucasLaurens\Assertion\Constraints\String\StartsWith;
-use LucasLaurens\Assertion\Constraints\Traversable\IsList;
 
 /**
  * @template TValue
@@ -224,6 +225,15 @@ final readonly class Assertion implements Assertable
         (new IsEmpty(
             actual: $this->value,
             pattern: 'Expected an empty value. Got %s'
+        ))->evaluate();
+    }
+
+    #[Override]
+    public function callable(): void
+    {
+        (new IsCallable(
+            actual: $this->value,
+            pattern: 'Expected a callable. Got: %s'
         ))->evaluate();
     }
 }
