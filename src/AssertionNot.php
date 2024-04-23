@@ -21,6 +21,7 @@ use LucasLaurens\Assertion\Constraints\String\StartsWith;
 use LucasLaurens\Assertion\Constraints\Traversable\IsList;
 use LucasLaurens\Assertion\Constraints\Cardinality\IsEmpty;
 use LucasLaurens\Assertion\Constraints\Traversable\IsArray;
+use LucasLaurens\Assertion\Constraints\Traversable\ArrayHasKey;
 use LucasLaurens\Assertion\Constraints\Type\{IsInstanceOf, IsInt, IsNull};
 use LucasLaurens\Assertion\Constraints\Cardinality\{Count, GreaterThan, LessThan};
 
@@ -254,6 +255,17 @@ final readonly class AssertionNot implements Assertable
             actual: $this->value,
             pattern: 'Expected a non callable value',
             negative: true
+        ))->evaluate();
+    }
+
+    #[Override]
+    public function arrayHasKey(string $key): void
+    {
+        (new ArrayHasKey(
+            $this->value,
+            $key,
+            'Expected the key %s to not exist',
+            true
         ))->evaluate();
     }
 }

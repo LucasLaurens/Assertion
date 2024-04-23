@@ -22,6 +22,7 @@ use LucasLaurens\Assertion\Constraints\Traversable\IsList;
 use LucasLaurens\Assertion\Constraints\Traversable\IsArray;
 use LucasLaurens\Assertion\Constraints\Type\{IsInstanceOf, IsInt, IsNull};
 use LucasLaurens\Assertion\Constraints\Cardinality\{Count, GreaterThan, IsEmpty, LessThan};
+use LucasLaurens\Assertion\Constraints\Traversable\ArrayHasKey;
 
 /**
  * @template TValue
@@ -234,6 +235,16 @@ final readonly class Assertion implements Assertable
         (new IsCallable(
             actual: $this->value,
             pattern: 'Expected a callable. Got: %s'
+        ))->evaluate();
+    }
+
+    #[Override]
+    public function arrayHasKey(string $key): void
+    {
+        (new ArrayHasKey(
+            $this->value,
+            $key,
+            'Expected the key %s to exist'
         ))->evaluate();
     }
 }

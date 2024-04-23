@@ -45,4 +45,6 @@ interface Assertable
     public function empty(): void;
 
     public function callable(): void;
+
+    public function arrayHasKey(string $key): void;
 }
