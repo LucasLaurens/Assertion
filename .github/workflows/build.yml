@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: ['8.3', '8.2']
+        php: ['8.3']
 
     steps:
     - uses: actions/checkout@v4
@@ -47,7 +47,7 @@ jobs:
       run: composer rector process --dry-run --config=rector.php
 
     - name: Run PHPStan
-      run: composer stan analyse -c phpstan.neon
+      run: composer phpstan analyse -c phpstan.neon
 
     - name: Run Pest
       run: composer pest --parallel

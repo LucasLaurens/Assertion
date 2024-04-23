@@ -1,7 +1,16 @@
 {
     "name": "lucaslaurens/assertion",
     "description": "This library contains efficient assertions to test the input and output of your methods. With these assertions, you can greatly reduce the amount of coding needed to write a safe implementation.",
-    "keywords": ["php"],
+    "keywords": [
+        "php",
+        "symfony",
+        "library",
+        "package",
+        "pest",
+        "unit",
+        "test",
+        "testing"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -10,7 +19,7 @@
         }
     ],
     "require": {
-        "php": "^8.2"
+        "php": "^8.3"
     },
     "autoload": {
         "psr-4": {
@@ -24,9 +33,11 @@
         "files": []
     },
     "require-dev": {
+        "laravel/pint": "^1.14",
         "pestphp/pest": "^2.34",
         "phpstan/phpstan": "^1.10",
-        "rector/rector": "^1.0"
+        "rector/rector": "^1.0",
+        "symfony/var-dumper": "^7.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -38,8 +49,15 @@
         }
     },
     "scripts": {
+        "pint": "php vendor/bin/pint",
         "rector": "php vendor/bin/rector",
-        "stan": "php vendor/bin/phpstan",
-        "pest": "php vendor/bin/pest"
+        "phpstan": "php vendor/bin/phpstan",
+        "pest": "php vendor/bin/pest",
+        "cover": [
+            "@pint",
+            "@rector",
+            "@phpstan",
+            "@pest"
+        ]
     }
 }
