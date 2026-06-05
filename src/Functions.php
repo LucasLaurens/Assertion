@@ -18,3 +18,18 @@ if (!function_exists('assertion')) {
         return new Assertion($value);
     }
 }
+
+if (!function_exists('assertionNot')) {
+    /**
+     * Creates a new assertion not.
+     *
+     * @template TValue
+     *
+     * @param  TValue|null  $value
+     * @return AssertionNot<TValue|null>
+     */
+    function assertionNot(mixed $value = null): AssertionNot
+    {
+        return new AssertionNot($value);
+    }
+}

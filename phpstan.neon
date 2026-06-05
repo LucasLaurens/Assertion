@@ -1,7 +1,7 @@
 parameters:
     level: max
+    phpVersion: 80500
     paths:
         - src
 
-    checkMissingIterableValueType: true
     reportUnmatchedIgnoredErrors: true
