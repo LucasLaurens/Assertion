@@ -215,7 +215,7 @@ final readonly class Assertion implements Assertable
         (new GreaterThan(
             $this->value,
             $limit,
-            'Expected a value greater than %d. Got: %d'
+            'Expected a value greater than %d. Got: %s'
         ))->evaluate();
     }
 
@@ -225,7 +225,7 @@ final readonly class Assertion implements Assertable
         (new LessThan(
             $this->value,
             $limit,
-            'Expected a value less than %d. Got: %d',
+            'Expected a value less than %d. Got: %s',
         ))->evaluate();
     }
 

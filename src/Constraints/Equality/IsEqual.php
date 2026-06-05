@@ -7,6 +7,9 @@ namespace LucasLaurens\Assertion\Constraints\Equality;
 use Override;
 use LucasLaurens\Assertion\Constraints\Constraint;
 
+use function is_scalar;
+use function gettype;
+
 final readonly class IsEqual extends Constraint
 {
     #[Override]
@@ -16,9 +19,8 @@ final readonly class IsEqual extends Constraint
     }
 
     #[Override]
-    protected function getFormattedActualValue(): int
+    protected function getFormattedActualValue(): bool|float|int|string|null
     {
-        // The default value is 0 when it is not an integer
-        return is_int($this->actual) ? $this->actual : 0;
+        return is_scalar($this->actual) ? $this->actual : gettype($this->actual);
     }
 }

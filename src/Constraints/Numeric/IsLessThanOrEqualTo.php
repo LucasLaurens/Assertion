@@ -10,6 +10,7 @@ use LucasLaurens\Assertion\Constraints\Constraint;
 use function is_int;
 use function is_float;
 use function is_numeric;
+use function gettype;
 
 final readonly class IsLessThanOrEqualTo extends Constraint
 {
@@ -22,10 +23,10 @@ final readonly class IsLessThanOrEqualTo extends Constraint
     }
 
     #[Override]
-    protected function getFormattedActualValue(): int|float
+    protected function getFormattedActualValue(): int|float|string
     {
         return (is_int($this->actual) || is_float($this->actual))
             ? $this->actual
-            : 0;
+            : gettype($this->actual);
     }
 }

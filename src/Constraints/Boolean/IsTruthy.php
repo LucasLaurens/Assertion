@@ -11,6 +11,7 @@ use LucasLaurens\Assertion\Exceptions\InvalidAssertionException;
 use function gettype;
 use function var_export;
 
+/** Passes for any PHP truthy value: non-zero numbers, non-empty strings, non-empty arrays, objects. Use IsTrue for strict boolean true. */
 final readonly class IsTruthy extends Constraint
 {
     #[Override]

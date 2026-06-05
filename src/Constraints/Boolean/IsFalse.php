@@ -10,6 +10,7 @@ use LucasLaurens\Assertion\Constraints\Constraint;
 use function is_bool;
 use function gettype;
 
+/** Passes only for the strict boolean false. Rejects 0, "", [], null — use IsFalsy for those. */
 final readonly class IsFalse extends Constraint
 {
     #[Override]

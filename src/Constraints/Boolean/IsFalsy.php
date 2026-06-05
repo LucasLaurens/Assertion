@@ -11,6 +11,7 @@ use LucasLaurens\Assertion\Exceptions\InvalidAssertionException;
 use function gettype;
 use function var_export;
 
+/** Passes for any PHP falsy value: false, 0, 0.0, "", "0", [], null. Use IsFalse for strict boolean false. */
 final readonly class IsFalsy extends Constraint
 {
     #[Override]

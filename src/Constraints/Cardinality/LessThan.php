@@ -7,18 +7,24 @@ namespace LucasLaurens\Assertion\Constraints\Cardinality;
 use Override;
 use LucasLaurens\Assertion\Constraints\Constraint;
 
+use function is_int;
+use function is_float;
+use function gettype;
+
 final readonly class LessThan extends Constraint
 {
     #[Override]
     protected function isMatching(): bool
     {
-        return $this->actual < $this->expected;
+        return (is_int($this->actual) || is_float($this->actual))
+            && $this->actual < $this->expected;
     }
 
     #[Override]
-    protected function getFormattedActualValue(): int
+    protected function getFormattedActualValue(): int|float|string
     {
-        // The default value is 0 when it is not an integer
-        return is_int($this->actual) ? $this->actual : 0;
+        return (is_int($this->actual) || is_float($this->actual))
+            ? $this->actual
+            : gettype($this->actual);
     }
 }

@@ -14,7 +14,7 @@ it('fails with 2 less than 1', function (): void {
     assertion(2)->lessThan(1);
 })->throws(
     InvalidAssertionException::class,
-    "Expected a value less than 1. Got: 2"
+    'Expected a value less than 1. Got: 2'
 );
 
 it('passes with 2 not less than 1', function (): void {
